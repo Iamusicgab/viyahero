@@ -6,6 +6,7 @@ import gcash from "../assets/gcash.png";
 import gcashlogo from "../assets/gcash-logo.svg";
 import { initializeApp } from "firebase/app";
 import { ref, uploadBytes, getDownloadURL, getStorage } from "firebase/storage";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
 
 function Forms() {
 	const firebaseConfig = {
@@ -18,6 +19,7 @@ function Forms() {
 		measurementId: "G-ETZML2LDGQ",
 	};
 	const app = initializeApp(firebaseConfig);
+	const db = getFirestore(app);
 	const storage = getStorage(app);
 	const nav = useNavigate();
 	const [loading, setLoading] = useState(false);
@@ -36,7 +38,7 @@ function Forms() {
 				await uploadBytes(storageRef, file);
 				const imageUrl = await getDownloadURL(storageRef);
 
-				// Prepare data to send to Google Sheets
+				// Prepare data payload
 				const payload = {
 					name: data.name,
 					email: data.email,
@@ -50,9 +52,13 @@ function Forms() {
 					imageUrl, // Include Firebase image URL
 				};
 
+				// Save data to Firestore
+				const docRef = await addDoc(collection(db, "transactions"), payload);
+				console.log("Document written with ID: ", docRef.id);
+
 				// Send data to Google Sheets via Apps Script Web App
 				const response = await fetch(
-					"https://script.google.com/macros/s/AKfycbyCfu8MBiE4lJmReK-bathOBNDyXRkutvHt9LW4o48kgEdm2JYlFIX-vtEAPJhFb68q/exec",
+					"https://script.google.com/macros/s/AKfycbxwqC5XWC9jvsVKnCzhA0_MxWkC9b_NnvKr9aRy1WGE54NTm9BZKjCkYe21Z2Okx8vX/exec",
 					{
 						method: "POST",
 						headers: {
