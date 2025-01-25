@@ -5,8 +5,8 @@ function Card(props: any) {
 				<img src={props.picture[0]} alt="Product Image" />
 			</figure>
 			<div className="card-body">
-				<h2 className="card-title">{props.title}</h2>
-				<p className="text-md font-bold">PHP{props.description}</p>
+				<h2 className="card-title text-2xl">{props.title}</h2>
+				<p className="text-lg font-bold">PHP{props.description}</p>
 				<div className="card-actions justify-end">
 					<button className="btn btn-primary" onClick={props.onclick}>
 						View Item

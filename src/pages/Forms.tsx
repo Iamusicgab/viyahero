@@ -124,7 +124,7 @@ function Forms() {
 									</div>
 									<div>
 										<input
-											type="number"
+											type="text"
 											autoComplete="tel"
 											placeholder="Phone number"
 											className="px-4 py-3 bg-white text-gray-800 w-full text-sm border-2 rounded-md focus:border-blue-500 outline-none"

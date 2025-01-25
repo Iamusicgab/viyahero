@@ -7,7 +7,8 @@ function Thankyou() {
 			<span className="font-bold text-2xl ">Thank you for ordering!</span>
 			<p className="">
 				Your order is currently being processed by the Viyahero team. You will
-				receive a confirmation message from your Facebook Messenger afterwards.
+				receive a confirmation message from your Facebook Messenger or Email
+				afterwards.
 			</p>
 			<a href="/">
 				<button className="btn btn-primary">Go Back</button>

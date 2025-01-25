@@ -6,10 +6,14 @@ function Header() {
 	const { totalUniqueItems } = useCart();
 	return (
 		<>
-			<div className="flex justify-center">
-				<div className="navbar bg-base-100 shadow-sm">
-					<div className="flex-1">
-						<img src={icon} alt="icon" className="h-12 p-1" />
+			<div className="flex justify-center shadow-2xl">
+				<div className="navbar bg-base-100 shadow-sm flex justify-between">
+					<div>
+						<div>
+							<a href="/" className="text-lg font-bold">
+								<img src={icon} alt="icon" className="h-12 p-1" />
+							</a>
+						</div>
 					</div>
 					<div className="flex-none indicator">
 						<span className="indicator-item indicator-start badge badge-secondary ">

@@ -4,7 +4,7 @@ import CartList from "../components/CartList";
 function Checkout() {
 	const { items, updateItemQuantity, removeItem, cartTotal } = useCart();
 	return (
-		<div className="grid gap-4 w-full max-w-screen-xl mx-auto">
+		<div className="grid gap-4 w-full max-w-screen-xl mx-auto mb-48">
 			{items.length === 0 ? <p>Your cart is empty</p> : "Your Items"}
 
 			{items.map((item) => {
@@ -25,16 +25,25 @@ function Checkout() {
 					/>
 				);
 			})}
-			<div className="fixed bottom-0 left-0 right-0 ">
-				<div className="m-4 p-4 bg-secondary border-1 rounded-md w-full max-w-screen-xl mx-auto">
+
+			<div className="fixed bottom-0 left-0 right-0 p-2">
+				<div className="m-4 p-4 bg-base-100 shadow-2xl border-4 rounded-md w-full max-w-screen-xl mx-auto">
 					<div>
 						<p className="text-2xl font-bold">Total: ₱{cartTotal}</p>
 					</div>
-					<a href="/forms">
+					{items.length == 0 ? (
 						<div className="modal-action">
-							<button className="btn btn-primary">Proceed</button>
+							<button className="btn btn-primary" disabled>
+								Proceed
+							</button>
 						</div>
-					</a>
+					) : (
+						<a href="/forms">
+							<div className="modal-action">
+								<button className="btn btn-primary">Proceed</button>
+							</div>
+						</a>
+					)}
 				</div>
 			</div>
 		</div>
