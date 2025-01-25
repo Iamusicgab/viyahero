@@ -6,7 +6,7 @@ function Thankyou() {
 			<img src={mochi} alt="Mochi" className="w-1/2" />
 			<span className="font-bold text-2xl ">Thank you for ordering!</span>
 			<p className="">
-				Your order is currently processing by the Viyahero team. You will
+				Your order is currently being processed by the Viyahero team. You will
 				receive a confirmation message from your Facebook Messenger afterwards.
 			</p>
 			<a href="/">

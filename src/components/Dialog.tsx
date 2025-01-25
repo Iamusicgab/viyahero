@@ -4,6 +4,9 @@ import { useState } from "react";
 
 function Dialog(props: any) {
 	const images = Array.isArray(props.image) ? props.image.slice(1) : []; // Ensure it's an array
+	if (Array.isArray(props.image) && props.image.length == 1) {
+		images.push(props.image[0]);
+	}
 	const { addItem, items } = useCart();
 	const { register, handleSubmit, watch } = useForm();
 	const [quantity, setQuantity] = useState<number>(1);
@@ -91,17 +94,19 @@ function Dialog(props: any) {
 					<div className="filter gap-y-1.5">
 						<input className="btn btn-square" type="reset" value="×" />
 
-						{sizes.map((size) => {
-							return (
-								<input
-									className="btn"
-									type="radio"
-									value={size}
-									aria-label={size}
-									{...register("size")}
-								/>
-							);
-						})}
+						{props.sizes
+							? sizes.map((size) => {
+									return (
+										<input
+											className="btn"
+											type="radio"
+											value={size}
+											aria-label={size}
+											{...register("size")}
+										/>
+									);
+							  })
+							: ""}
 					</div>
 					<div className="flex justify-center gap-4">
 						{quantity <= 1 ? (
@@ -132,12 +137,18 @@ function Dialog(props: any) {
 						</button>
 					</div>
 
-					{truePrice ? (
-						<button className="btn btn-primary" type="submit">
-							Add to Cart
-						</button>
+					{props.sizes ? (
+						truePrice ? (
+							<button className="btn btn-primary" type="submit">
+								Add to Cart
+							</button>
+						) : (
+							<button className="btn btn-primary" type="submit" disabled>
+								Add to Cart
+							</button>
+						)
 					) : (
-						<button className="btn btn-primary" type="submit" disabled>
+						<button className="btn btn-primary" type="submit">
 							Add to Cart
 						</button>
 					)}
